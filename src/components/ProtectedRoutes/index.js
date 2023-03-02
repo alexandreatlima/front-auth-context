@@ -9,7 +9,7 @@ export function ProtectedRoute(props) {
   const parsedUser = JSON.parse(loggedInUser || '""');
 
   useEffect(() => {
-    if (!parsedUser) {
+    if (!parsedUser.token) {
       navigate("/login");
     }
   }, []);
