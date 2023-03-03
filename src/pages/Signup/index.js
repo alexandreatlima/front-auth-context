@@ -27,33 +27,36 @@ export function Signup() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="input-name">Nome:</label>
-      <input
-        id="input-name"
-        type="text"
-        value={form.name}
-        name="name"
-        onChange={handleChange}
-      />
-      <label htmlFor="input-email">E-mail:</label>
-      <input
-        id="input-email"
-        type="email"
-        value={form.email}
-        name="email"
-        onChange={handleChange}
-      />
-      <label htmlFor="input-password">Senha:</label>
-      <input
-        id="input-password"
-        type="password"
-        value={form.password}
-        name="password"
-        onChange={handleChange}
-      />
+    <>
+      <h1>Cadastro</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="input-name">Nome:</label>
+        <input
+          id="input-name"
+          type="text"
+          value={form.name}
+          name="name"
+          onChange={handleChange}
+        />
+        <label htmlFor="input-email">E-mail:</label>
+        <input
+          id="input-email"
+          type="email"
+          value={form.email}
+          name="email"
+          onChange={handleChange}
+        />
+        <label htmlFor="input-password">Senha:</label>
+        <input
+          id="input-password"
+          type="password"
+          value={form.password}
+          name="password"
+          onChange={handleChange}
+        />
 
-      <button>Cadastrar!</button>
-    </form>
+        <button>Cadastrar!</button>
+      </form>
+    </>
   );
 }

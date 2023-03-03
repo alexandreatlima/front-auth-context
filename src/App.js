@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoutes";
 import { AuthContextComponent } from "./context/authContext";
-import { AllPosts } from "./pages/AllPosts";
+import { CreatePost } from "./pages/CreatePost";
+import { Feed } from "./pages/Feed";
+import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 
@@ -10,11 +12,13 @@ function App() {
     <>
       <AuthContextComponent>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/feed" element={<ProtectedRoute component={Feed} />} />
           <Route
-            path="/posts"
-            element={<ProtectedRoute component={AllPosts} />}
+            path="/create-post"
+            element={<ProtectedRoute component={CreatePost} />}
           />
 
           {/* <Route path="*" element={<ErrorPage />} /> */}

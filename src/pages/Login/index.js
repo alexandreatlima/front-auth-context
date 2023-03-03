@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import { AuthContext } from "../../context/authContext";
 
 export function Login() {
+  const navigate = useNavigate();
   const { setLoggedInUser } = useContext(AuthContext);
 
   const [form, setForm] = useState({
@@ -23,7 +25,7 @@ export function Login() {
 
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
 
-      console.log(response);
+      navigate("/feed");
     } catch (err) {
       console.log(err);
     }
