@@ -8,17 +8,36 @@ export function Signup() {
     name: "",
     email: "",
     password: "",
+    avatar: "",
   });
+
+  const [img, setImg] = useState("");
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  function handleImage(e) {
+    setImg(e.target.files[0]);
+  }
+
+  async function handleUploadImage() {
+    const uploadData = new FormData();
+
+    uploadData.append("picture", img);
+
+    const response = await api.post("/uploadImage", uploadData);
+
+    return response.data.url;
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      await api.post("/user/signup", form);
+      const imgURL = await handleUploadImage();
+
+      await api.post("/user/signup", { ...form, avatar: imgURL });
 
       navigate("/login");
     } catch (err) {
@@ -54,6 +73,9 @@ export function Signup() {
           name="password"
           onChange={handleChange}
         />
+
+        <label htmlFor="input-avatar">Foto de perfil:</label>
+        <input type="file" id="input-avatar" onChange={handleImage} />
 
         <button>Cadastrar!</button>
       </form>
